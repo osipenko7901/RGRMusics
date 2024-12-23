@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Song</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Edit Song</h1>
+
+    <!-- Форма редагування пісні -->
+    <form th:action="@{/songs/update/{id}(id=${song.id})}" th:object="${song}" method="post" class="form-container">
+        <input type="hidden" th:field="*{id}" /> <!-- Схований ідентифікатор пісні -->
+
+        <!-- Назва пісні -->
+        <label for="songName">Song Name:</label>
+        <input type="text" id="songName" th:field="*{songName}" required />
+        <div th:if="${#fields.hasErrors('songName')}" th:errors="*{songName}" class="error"></div>
+
+        <!-- Тривалість пісні -->
+        <label for="duration">Duration (minutes):</label>
+        <input type="number" step="0.01" id="duration" th:field="*{duration}" required />
+        <div th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}" class="error"></div>
+
+        <!-- Жанр пісні -->
+        <label for="genreSong">Genre:</label>
+        <input type="text" id="genreSong" th:field="*{genreSong}" required />
+        <div th:if="${#fields.hasErrors('genreSong')}" th:errors="*{genreSong}" class="error"></div>
+
+        <!-- Ідентифікатор музичної групи -->
+        <label for="musicGroup">Music Group:</label>
+        <select id="musicGroup" th:field="*{musicGroup}" required>
+            <option th:each="group : ${musicgroups}" th:value="${group.id}" th:text="${group.groupName}"></option>
+        </select>
+        <div th:if="${#fields.hasErrors('musicGroup')}" th:errors="*{musicGroup}" class="error"></div>
+
+        <button type="submit" class="button">Update</button>
+    </form>
+
+    <!-- Посилання для повернення до списку пісень -->
+    <a href="/songs" class="button back">Back to Songs</a>
+</div>
+</body>
+</html>

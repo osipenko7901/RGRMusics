@@ -1,0 +1,216 @@
+/* Загальні стилі */
+body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    background: linear-gradient(135deg, #e6f7e7, #c6e7c8); /* Світло-зелений фон */
+    margin: 0;
+    padding: 0;
+    color: #3a3a3a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-rendering: optimizeLegibility;
+}
+.warning {
+    color: #c0392b;
+    background-color: #fdecea;
+    border: 1px solid #e74c3c;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+/* Контейнер */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px;
+    background: #fafafa;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Заголовки */
+h1, h2, h3 {
+    color: #2a2a2a;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Стилі форм */
+.form-container {
+    background: linear-gradient(135deg, #e8f9f1, #d4f2e3); /* Світло-зелений градієнт */
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-container label {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #3a3a3a;
+}
+
+.form-container input,
+.form-container select {
+    width: 87%;
+    padding: 14px 16px;
+    margin-bottom: 25px;
+    border: 1px solid #a9d4c5;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container input:focus,
+.form-container select:focus {
+    border-color: #16a085;
+    box-shadow: 0 0 8px rgba(22, 160, 133, 0.5);
+    outline: none;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #16a085, #1abc9c);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+.form-container button:hover {
+    background: linear-gradient(135deg, #1abc9c, #0e8575);
+    transform: translateY(-3px);
+}
+
+/* Стилі таблиць */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fdfdfd;
+}
+
+table th,
+table td {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.1rem;
+}
+
+table th {
+    background: #16a085;
+    color: #fff;
+    font-weight: 700;
+}
+
+table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+table tr:hover {
+    background: #f4f4f4;
+    transition: background 0.3s ease;
+}
+.actions {
+    display: flex;
+    gap: 10px; /* Відстань між кнопками */
+    justify-content: center; /* Вирівнювання по центру */
+}
+
+/* Кнопки */
+.button {
+    display: inline-block;
+    background: linear-gradient(135deg, #1abc9c, #16a085);
+    color: #fff;
+    padding: 15px 40px;
+    margin-top: 10px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.button:hover {
+    background: #fdfdfd; /* Світлий фон */
+    color: #16a085; /* Зміна кольору тексту */
+    border-color: #16a085; /* Додаємо кольорову рамку */
+    text-decoration: underline; /* Підкреслення */
+}
+
+.button.edit:hover {
+    background: #fdfdfd; /* Світлий фон */
+    color: #f39c12; /* Зміна кольору тексту */
+    border-color: #f39c12; /* Додаємо кольорову рамку */
+    text-decoration: underline; /* Підкреслення */
+}
+
+.button.delete:hover {
+    background: #fdfdfd; /* Світлий фон */
+    color: #e74c3c; /* Зміна кольору тексту */
+    border-color: #e74c3c; /* Додаємо кольорову рамку */
+    text-decoration: underline; /* Підкреслення */
+}
+.button-group {
+    display: grid;
+}
+.button.edit {
+    background: #f39c12;
+}
+
+.button.delete {
+    background: #c0392b;
+}
+
+/* Помилки */
+.error {
+    color: #e74c3c;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.links {
+    text-align: center; /* Центрування тексту */
+    margin-top: 20px; /* Відступ зверху */
+    font-size: 1rem; /* Розмір тексту */
+
+}
+
+.links a {
+    color: #34495e; /* Колір тексту */
+    text-decoration: none; /* Забираємо підкреслення */
+    font-weight: 500; /* Напівжирний шрифт */
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Анімація при наведенні */
+}
+
+.links a:hover {
+    color: #2ecc71; /* Колір при наведенні */
+    text-decoration: underline; /* Підкреслення при наведенні */
+}

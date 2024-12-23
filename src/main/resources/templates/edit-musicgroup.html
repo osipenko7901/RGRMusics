@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Music Group</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Edit Music Group</h1>
+
+    <!-- Форма редагування музичної групи -->
+    <form th:action="@{/musicgroups/update/{id}(id=${musicgroup.id})}" th:object="${musicgroup}" method="post" class="form-container">
+        <input type="hidden" th:field="*{id}" /> <!-- Схований ідентифікатор -->
+
+        <!-- Назва групи -->
+        <label for="groupName">Group Name:</label>
+        <input type="text" id="groupName" th:field="*{groupName}" required />
+        <div th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}" class="error"></div>
+
+        <!-- Жанр групи -->
+        <label for="genre">Genre:</label>
+        <select id="genre" th:field="*{genre}" required>
+            <option th:each="genre : ${genres}" th:value="${genre.genreId}" th:text="${genre.genreName}"></option>
+        </select>
+        <div th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}" class="error"></div>
+
+        <!-- Країна походження -->
+        <label for="originCountry">Origin Country:</label>
+        <input type="text" id="originCountry" th:field="*{originCountry}" required />
+        <div th:if="${#fields.hasErrors('originCountry')}" th:errors="*{originCountry}" class="error"></div>
+
+        <!-- Рік заснування -->
+        <label for="foundationYear">Foundation Year:</label>
+        <input type="number" id="foundationYear" th:field="*{foundationYear}" required />
+        <div th:if="${#fields.hasErrors('foundationYear')}" th:errors="*{foundationYear}" class="error"></div>
+
+        <button type="submit" class="button">Update</button>
+    </form>
+
+    <!-- Посилання для повернення -->
+    <a href="/musicgroups" class="button back">Back to Music Groups</a>
+</div>
+</body>
+</html>

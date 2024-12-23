@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Music Group</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Add Music Group</h1>
+    <form th:action="@{/musicgroups/add}" th:object="${musicgroup}" method="post" class="form-container">
+        <!-- Назва групи -->
+        <label for="groupName">Group Name:</label>
+        <input type="text" id="groupName" th:field="*{groupName}" placeholder="Enter group name" required />
+        <div th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}" class="error"></div>
+
+        <!-- Жанр (вибір із випадаючого списку) -->
+        <label for="genre">Genre:</label>
+        <select id="genre" th:field="*{genre.genreId}" required>
+            <option value="" disabled selected>Select Genre</option>
+            <option th:each="genre : ${genres}" th:value="${genre.genreId}" th:text="${genre.genreName}"></option>
+        </select>
+        <div th:if="${#fields.hasErrors('genre.genreId')}" th:errors="*{genre.genreId}" class="error"></div>
+
+        <!-- Країна походження -->
+        <label for="originCountry">Origin Country:</label>
+        <input type="text" id="originCountry" th:field="*{originCountry}" placeholder="Enter origin country" required />
+        <div th:if="${#fields.hasErrors('originCountry')}" th:errors="*{originCountry}" class="error"></div>
+
+        <!-- Рік заснування -->
+        <label for="foundationYear">Foundation Year:</label>
+        <input type="number" id="foundationYear" th:field="*{foundationYear}" placeholder="Enter foundation year" required />
+        <div th:if="${#fields.hasErrors('foundationYear')}" th:errors="*{foundationYear}" class="error"></div>
+
+        <!-- Кнопка збереження -->
+        <button type="submit" class="button">Save</button>
+    </form>
+    <!-- Кнопка повернення до списку груп -->
+    <a href="/musicgroups" class="button back">Back to Music Groups</a>
+</div>
+</body>
+</html>

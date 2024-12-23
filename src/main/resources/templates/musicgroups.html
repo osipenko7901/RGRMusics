@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Music Groups</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Music Groups</h1>
+
+    <!-- Додати нову групу (доступно тільки адміну) -->
+    <div th:if="${isAdmin}">
+        <a href="/musicgroups/add" class="button">Add Music Group</a>
+    </div>
+
+    <!-- Повідомлення для звичайних користувачів -->
+    <div th:if="${!isAdmin}" class="warning-message">
+        <p style="color: #b61d1d;">Note: You are in view-only mode. Admin rights are required for modifications.</p>
+    </div>
+
+    <!-- Таблиця з даними музичних груп -->
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Group Name</th>
+            <th>Genre</th>
+            <th>Origin Country</th>
+            <th>Foundation Year</th>
+            <th th:if="${isAdmin}">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="musicgroup : ${musicgroups}">
+            <td th:text="${musicgroup.id}"></td>
+            <td th:text="${musicgroup.groupName}"></td>
+            <td th:text="${musicgroup.genre.genreName}"></td>
+            <td th:text="${musicgroup.originCountry}"></td>
+            <td th:text="${musicgroup.foundationYear}"></td>
+            <td th:if="${isAdmin}" class="actions">
+                <!-- Посилання для редагування -->
+                <a th:href="@{/musicgroups/edit/{id}(id=${musicgroup.id})}" class="button edit">Edit</a>
+                <!-- Посилання для видалення -->
+                <a th:href="@{/musicgroups/delete/{id}(id=${musicgroup.id})}" class="button delete">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Повернення на головну сторінку -->
+    <a href="/home" class="button back">Back to Home</a>
+</div>
+</body>
+</html>

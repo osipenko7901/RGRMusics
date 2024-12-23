@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Genre</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Edit Genre</h1>
+
+    <form th:action="@{/genres/update/{id}(id=${genre.genreId})}" th:object="${genre}" method="post" class="form-container">
+        <!-- Приховане поле для ID жанру -->
+        <input type="hidden" th:field="*{genreId}" />
+
+        <!-- Назва жанру -->
+        <div class="form-group">
+            <label for="genreName">Genre Name:</label>
+            <input type="text" id="genreName" th:field="*{genreName}" class="form-control" required />
+            <div th:if="${#fields.hasErrors('genreName')}" th:errors="*{genreName}" class="error"></div>
+        </div>
+
+        <!-- Рівень популярності -->
+        <div class="form-group">
+            <label for="popularityScore">Popularity Score:</label>
+            <input type="number" id="popularityScore" th:field="*{popularityScore}" class="form-control" min="0" max="100" required />
+            <div th:if="${#fields.hasErrors('popularityScore')}" th:errors="*{popularityScore}" class="error"></div>
+        </div>
+
+        <!-- Опис жанру -->
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" th:field="*{description}" class="form-control" rows="4"></textarea>
+            <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error"></div>
+        </div>
+
+        <!-- Кнопка оновлення -->
+        <button type="submit" class="btn btn-primary">Update Genre</button>
+    </form>
+
+    <!-- Кнопка для повернення -->
+    <a href="/genres" class="button back">Back to Genres</a>
+</div>
+</body>
+</html>

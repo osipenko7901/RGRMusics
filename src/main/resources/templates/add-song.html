@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Song</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Add Song</h1>
+    <form th:action="@{/songs/add}" th:object="${song}" method="post" class="form-container">
+        <!-- Название песни -->
+        <div class="form-group">
+            <label for="songName">Song Name:</label>
+            <input type="text" id="songName" th:field="*{songName}" class="form-control" required />
+            <div th:if="${#fields.hasErrors('songName')}" th:errors="*{songName}" class="error"></div>
+        </div>
+
+        <!-- Длительность песни -->
+        <div class="form-group">
+            <label for="duration">Duration (min):</label>
+            <input type="number" id="duration" th:field="*{duration}" class="form-control" step="0.01" required />
+            <div th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}" class="error"></div>
+        </div>
+
+        <!-- Жанр песни -->
+        <div class="form-group">
+            <label for="genreSong">Genre:</label>
+            <input type="text" id="genreSong" th:field="*{genreSong}" class="form-control" required />
+            <div th:if="${#fields.hasErrors('genreSong')}" th:errors="*{genreSong}" class="error"></div>
+        </div>
+
+        <!-- Выбор музыкальной группы -->
+        <div class="form-group">
+            <label for="musicGroup">Music Group:</label>
+            <select id="musicGroup" th:field="*{musicGroup}" class="form-select" required>
+                <option value="" disabled selected>Select Music Group</option>
+                <option th:each="group : ${musicgroups}" th:value="${group.id}" th:text="${group.groupName}"></option>
+            </select>
+            <div th:if="${#fields.hasErrors('musicGroup')}" th:errors="*{musicGroup}" class="error"></div>
+        </div>
+
+        <!-- Кнопка отправки -->
+        <button type="submit" class="btn btn-primary">Add Song</button>
+    </form>
+
+    <!-- Ссылка на возврат -->
+    <a href="/songs" class="button back">Back to Songs</a>
+</div>
+</body>
+</html>

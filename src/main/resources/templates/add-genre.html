@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Genre</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Add Genre</h1>
+    <form th:action="@{/genres/add}" th:object="${genre}" method="post" class="form-container">
+        <!-- Genre Name -->
+        <label for="genreName">Genre Name:</label>
+        <input type="text" id="genreName" th:field="*{genreName}" placeholder="Enter genre name" required />
+        <div th:if="${#fields.hasErrors('genreName')}" th:errors="*{genreName}" class="error"></div>
+
+        <!-- Popularity Score -->
+        <label for="popularityScore">Popularity Score:</label>
+        <input type="number" id="popularityScore" th:field="*{popularityScore}" placeholder="Enter score (0-100)" min="0" max="100" required />
+        <div th:if="${#fields.hasErrors('popularityScore')}" th:errors="*{popularityScore}" class="error"></div>
+
+        <!-- Description -->
+        <label for="description">Description:</label>
+        <textarea id="description" th:field="*{description}" placeholder="Enter genre description"></textarea>
+        <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error"></div>
+
+        <button type="submit" class="button">Save</button>
+    </form>
+    <a href="/genres" class="button back">Back to Genres</a>
+</div>
+</body>
+</html>
